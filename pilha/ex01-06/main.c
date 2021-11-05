@@ -3,7 +3,7 @@
  * 
  * AUTOR: Gustavo Valadares Castro
  *
- * DESCRIÇÃO:	Programa de d utilizando os conceitos de pilha
+ * DESCRIÇÃO:	Programa baseado nos conceitos de pilha
  *
  * OBSERVAÇÕES:
  *				Repositório: https://github.com/GuVCastro/aep2-tad-pilha
