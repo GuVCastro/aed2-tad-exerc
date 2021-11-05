@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "pilha.h"
+
+int main(void) {
+
+  char texto[1000];
+  Pilha pilha;
+  create_pilha(&pilha);
+
+  fgets(texto,999,stdin);
+  if(texto[strlen(texto)-1] == '\n')
+    texto[strlen(texto)-1] = '\0';
+  if(texto[strlen(texto)-1] == '\r')
+    texto[strlen(texto)-1] = '\0';
+
+  for(int i=0; i<strlen(texto);i++){
+
+    switch(texto[i]){
+      case '+':
+      {
+        int a = pop(&pilha);
+        int b = pop(&pilha);
+        int res = a+b;
+        //printf("%d %d %d", a, b, res);
+        push(&pilha,res);
+      }        
+      break;
+      case '-':
+       {
+        int a = pop(&pilha);
+        int b = pop(&pilha);
+        int res = b-a;
+        push(&pilha,res);
+      } 
+      break;
+      case '*':
+       {
+        int a = pop(&pilha);
+        int b = pop(&pilha);
+        int res = b*a;
+        push(&pilha,res);
+      } 
+      break;
+      case '/':
+       {
+        int a = pop(&pilha);
+        int b = pop(&pilha);
+        int res = b/a;
+        push(&pilha,res);
+      } 
+      break;
+
+      default:{
+        if(texto[i]!=' ')
+          push(&pilha,texto[i]-48);     
+      }
+        
+    }
+  }
+
+  int res = pop(&pilha);
+  printf("Resultado: %d\n", res);
+
+  return 0;
+}
+
+#include "pilha.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void create_pilha(Pilha *p){
+  p->topo = 0;
+}
+
+bool push(Pilha *p, int dado){
+  if(p->topo == MAX){
+    return false;
+  }else{
+    p->dados[p->topo++] = dado;
+    return true;
+  }
+}
+
+int pop(Pilha *p){
+  if(p->topo == 0)
+    return -1;
+
+  p->topo--;
+  return p->dados[p->topo];
+}
+
+int size_pilha(Pilha *p){
+  return p->topo;
+}
+
+void print_pilha(Pilha *p){
+
+  for(int i=0; i<p->topo;i++){
+    printf("%d", p->dados[i]);
+  }
+
+  printf("\n");
+
+}
+
+#define MAX 70
+#include <stdbool.h>
+
+typedef struct Pilha{
+  int dados[MAX];
+  int topo;
+}Pilha;
+
+void create_pilha(Pilha *p);
+
+bool push(Pilha *p, int dado);
+
+int pop(Pilha *p);
+
+int size_pilha(Pilha *p);
+
+void print_pilha(Pilha *p);
