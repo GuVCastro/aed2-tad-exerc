@@ -1,3 +1,4 @@
+#include <string.h>
 #include "pilha_linear.h"
 
 void newPilha(Pilha *p)
@@ -8,7 +9,7 @@ void newPilha(Pilha *p)
 void push(Pilha *p, Dados c)
 {
 	if (p->n == MAX)
-		printf("\nEstacionamento cheio!\n");
+		printf("\nPILHA CHEIA!\n");
 	else {
 		p->dados[p->n] = c;
 		p->n++;    
@@ -18,7 +19,7 @@ void push(Pilha *p, Dados c)
 Dados pop(Pilha *p)
 {
 	if (p->n == 0) {
-		printf("\nEstacionamento vazio!\n");
+		printf("\nPILHA VAZIA!\n");
 		Dados c = {-1,-1};
 		return c;
 	}
@@ -31,7 +32,7 @@ Dados pop(Pilha *p)
 void printPilha(Pilha *p)
 {
 	printf("TOPO ");
-	for(int i=p->n-1; i>=0; i--)
+	for (int i = p->n-1; i >= 0; i--)
 		printDados(p->dados[i]);
 	printf("\n");
 }
@@ -43,29 +44,69 @@ bool isPilhaVazia(Pilha *p)
 
 void clonarPilha(Pilha *p1, Pilha *p2)
 {
-	printf("foo\n");
+	int i;
+
+	for (i = p1->n-1; i >= 0; i--)
+		p2->dados[i] = p1->dados[i];
+	
+	p2->n = p1->n;
 }
 
 void concatenarPilha(Pilha *p1, Pilha *p2, Pilha *p)
 {
-	printf("foo\n");
+	int i;
 
+	clonarPilha(p1, p);
+
+	for (i = 0; i < p2->n; i++)
+		push(p, p2->dados[i]);
 }
 
 void inverterPilha(Pilha *p)
 {
-	printf("foo\n");
+	int i, pSize = p->n;
+	Pilha tmp;
+	Dados dTmp;
+	
+	newPilha(&tmp);
 
+	for (i = 0; i < pSize; i++) {
+		dTmp = pop(p);
+		strcpy(tmp.dados[i].dado, dTmp.dado);
+		tmp.dados[i].numero = dTmp.numero;	
+	}
+	tmp.n = pSize;
+
+	clonarPilha(&tmp, p);
 }
 
 void ordenarPilha(Pilha *p)
 {
-	printf("foo\n");
+    int i, j;
+	Dados tmp;
 
+    for (i = p->n-1; i > 0; i--) 
+		for (j = 0; j < i; j++) 
+			if (strcmp(p->dados[j].dado, p->dados[j + 1].dado) < 0) {
+				tmp = p->dados[j];
+				p->dados[j] = p->dados[j + 1];
+				p->dados[j + 1] = tmp;
+			}
 }
 
 void retiraImpares(Pilha *p)
 {
-	printf("foo\n");
+	int i, j = 0;
+	Pilha tmp;
+	
+	newPilha(&tmp);
 
+	for (i = 0; i < p->n; i++)
+		if ((p->dados[i].numero % 2) == 0) {
+			tmp.dados[j] = p->dados[i];
+			j++;
+		}
+	tmp.n = j;
+
+	clonarPilha(&tmp, p);
 }

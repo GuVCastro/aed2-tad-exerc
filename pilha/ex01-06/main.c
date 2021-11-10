@@ -14,13 +14,12 @@
  *				2021/10/29	Gustavo	Esqueleto do código
  *				2021/11/04	Gustavo	Código finalizado
  ****************************************************************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-//#include "pilha_flexivel.h"
-#include "pilha_linear.h"
+#include "pilha_flexivel.h"
+//#include "pilha_linear.h"
 
 #define TAM 10
 
@@ -31,6 +30,8 @@ void preencheValores(Dados *d)
 
 	for (i = 0; i < TAM; i++)
 		d->dado[i] = letras[rand() % 26];
+	
+	d->dado[i] = '\0';
 
 	d->numero = rand() % 100;
 }
