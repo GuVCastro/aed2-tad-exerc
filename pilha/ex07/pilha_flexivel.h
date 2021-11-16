@@ -1,7 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#define MAX 70
+#define MAX 10
 
 typedef struct Celula{
 	char dado;
@@ -15,10 +15,9 @@ typedef struct Pilha{
 
 void newPilha(Pilha *p);
 
-bool push(Pilha *p, char d);
+void push(Pilha *p, char d);
 
 char pop(Pilha *p);
 
-void printPilha(Pilha *p);
-
 bool isPilhaVazia(Pilha *p);
+

@@ -3,7 +3,7 @@
  * 
  * AUTOR: Gustavo Valadares Castro
  *
- * DESCRIÇÃO:	Programa de estacionamento utilizando os conceitos de pilha
+ * DESCRIÇÃO:	Implementacoes de funcionalidades de editores de texto usando pilha
  *
  * OBSERVAÇÕES:
  *				Repositório: https://github.com/GuVCastro/aed2-tad-pilha
@@ -11,69 +11,56 @@
  *
  * MUDANÇAS:
  *				DATA		AUTOR	DETALHES
- *				2021/10/15	Gustavo	Esqueleto do código
- *				2021/10/22	Gustavo	Alterações na interface
- *				2021/10/22	Gustavo	Código finalizado
+ *				2021/10/29	Gustavo	Esqueleto do código
+ *				2021/11/04	Gustavo	Código finalizado
  ****************************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "pilha_flexivel.h"
 //#include "pilha_linear.h"
 
+#define TAM 1000
+
 int main(void)
 { 
-	Pilha estacionamento;
-	newPilha(&estacionamento);
-	int operacao, placa;
+	int i;
+	char texto[] = "Este et# um teste para o ET, o extraterrestre em C.@Acabamos de testar a capacidade de o ET saltar de linha, utilizando seus poderes extras (cuidado, pois agora vamos estourar a capacidade máxima da linha de impressão, que é de 70 caracteres.)@O k#cut#rso dh#e Estruturas de Dados II et# h#um cuu#rsh#o #x# x?@!#?!#+.@ Como et# bom n#nt#ao### r#ess#tt#ar mb#aa#triz#cull#ado nn#x#ele!/ Sera que este funciona/// O sinal? não### deve ficar! ~";
+	Pilha p;
+	newPilha(&p);
 
-	do{
-		printf("Insira a operacao [1] entrada, [2] saida: "); scanf("%d", &operacao);
-		printf("Insira a placa: "); scanf("%d", &placa);
-		switch (operacao) {
-			case 0:
-				printf("\nPrograma finalizado!\n");
+	//printf("Insira o texto:\n");
+	//fgets(texto, TAM - 1, stdin);
+	if (texto[strlen(texto) - 1] == '\n')
+		texto[strlen(texto) - 1] = '\0';
+	if (texto[strlen(texto) - 1] == '\r')
+		texto[strlen(texto) - 1] = '\0';
+
+	for (i = 0; i < strlen(texto); i++) {
+		switch (texto[i]) {
+			case '#':
+				pop(&p);
 				break;
-
-			case 1: 
+			case '/':
+				newPilha(&p);
+				break;
+			case '@':
+				printPilha(&p);
+				newPilha(&p);
+				break;
+			default:
 			{
-				Carro c;
-				c.placa = placa;
-				c.manobras = 0;
-				push(&estacionamento, c);
-				printf("\nCarro inserido\n");
-				printPilha(&estacionamento);
-				break;
-			}
-
-			case 2:
-			{
-				Pilha pAux;
-				newPilha(&pAux);
-
-				while (!isPilhaVazia(&estacionamento)) {
-					Carro c = pop(&estacionamento);
-					if (c.placa == placa) {
-						printf("\nCarro encontrado!\n");
-						break;
-					}
-					push(&pAux, c);
+				bool empilhou = push(&p, texto[i]);
+				if (!empilhou) {
+					printPilha(&p);
+					newPilha(&p);
 				}
-
-				while (!isPilhaVazia(&pAux)) {
-					Carro c = pop(&pAux);
-					c.manobras++;
-					push(&estacionamento,c);
-				}
-				printf("\nCarro removido!\n");
-				printPilha(&estacionamento);        
-				break;
 			}
-
-			default:	printf("\nOpcao Invalida!\n");
 		}
+	}
 
-	} while(operacao != 0);
+	printPilha(&p);
 
 	return 0;
 }

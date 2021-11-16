@@ -5,35 +5,32 @@ void newPilha(Pilha *p)
 	p->n = 0;
 }
 
-void push(Pilha *p, Carro c)
+bool push(Pilha *p, char d)
 {
 	if (p->n == MAX)
-		printf("\nEstacionamento cheio!\n");
+		return false;
 	else {
-		p->dados[p->n] = c;
-		p->n++;    
+		p->dados[p->n++] = d;
+		return true;
 	}
 }
 
-Carro pop(Pilha *p)
+char pop(Pilha *p)
 {
-	if (p->n == 0) {
-		printf("\nEstacionamento vazio!\n");
-		Carro c = {-1,-1};
-		return c;
-	}
-	else{
-		p->n--;
-		return p->dados[p->n];
-	}
+	if (p->n == 0) 
+		return '\0';
+	
+	p->n--;
+	return p->dados[p->n];
 }
 
 void printPilha(Pilha *p)
 {
-	printf("\n");
-	printf("TOPO ");
-	for(int i=p->n-1; i>=0; i--)
-		printCarro(p->dados[i]);
+	int i;
+
+	for(i = 0; i < p->n; i++)
+		printf("%c", p->dados[i]);
+	
 	printf("\n");
 }
 
