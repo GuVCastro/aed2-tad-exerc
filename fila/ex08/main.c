@@ -18,14 +18,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 //#include "fila_linear.h"
 #include "fila_flexivel.h"
-
-#define BUF 50
 
 int main(void)
 {
 	Fila f;
+	char ch = '\0';
 	newFila(&f);
 	int opcao = 0;
 	Processo p;
@@ -52,6 +52,7 @@ int main(void)
 				scanf("%d", &p.id);
 				printf("Insira a descricao do processo: ");
 				scanf(" %[^\n]%*c", p.descricao);
+				strncat(p.descricao, &ch, 1);
 				enqueue(&f, p);
 				break;
 			}
