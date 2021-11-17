@@ -78,7 +78,7 @@ void clonarPilha(Pilha *p1, Pilha *p2)
 void concatenarPilha(Pilha *p1, Pilha *p2, Pilha *p)
 {
 	Celula *tmp = p2->topo;
-	Dados *v = malloc(p1->n*sizeof(Dados));
+	Dados *v = malloc(p2->n*sizeof(Dados));
 	int i = p2->n-1;
 
 	clonarPilha(p1, p);
@@ -92,6 +92,8 @@ void concatenarPilha(Pilha *p1, Pilha *p2, Pilha *p)
 	for(i = 0; i < p2->n; i++) {
 		push(p, v[i]);		
 	}
+
+	free(tmp);
 }
 
 void inverterPilha(Pilha *p)

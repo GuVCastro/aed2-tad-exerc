@@ -1,19 +1,18 @@
 #include <stdbool.h>
 #include <stdio.h>
-#include "carro.h"
 
-#define MAX 5
+#define MAX 70
 
 typedef struct Pilha{
-	Carro dados[MAX];
+	int dados[MAX];
 	int n;
 } Pilha;
 
 void newPilha(Pilha *p);
 
-void push(Pilha *p, Carro c);
+bool push(Pilha *p, int d);
 
-Carro pop(Pilha *p);
+int pop(Pilha *p);
 
 void printPilha(Pilha *p);
 

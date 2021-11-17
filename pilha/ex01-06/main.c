@@ -6,7 +6,7 @@
  * DESCRIÇÃO:	Programa baseado nos conceitos de pilha
  *
  * OBSERVAÇÕES:
- *				Repositório: https://github.com/GuVCastro/aep2-tad-pilha
+ *				Repositório: https://github.com/GuVCastro/aep2-tad-exerc
  *				Compilador: gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0 
  *
  * MUDANÇAS:

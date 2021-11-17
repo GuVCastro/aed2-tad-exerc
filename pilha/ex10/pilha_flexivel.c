@@ -7,29 +7,28 @@ void newPilha(Pilha *p)
 	p->n = 0;
 }
 
-void push(Pilha *p, Carro c)
+bool push(Pilha *p, int c)
 {
 	if(p->n == MAX)
-		printf("\nEstacionamento cheio!\n");
-	else {
-		Celula *tmp = malloc(sizeof(Celula));
-		tmp->dado = c;
-		tmp->prox = p->topo;
+		return false;
+	
+	Celula *tmp = malloc(sizeof(Celula));
+	tmp->dado = c;
+	tmp->prox = p->topo;
 
-		p->topo = tmp;
-		p->n++;    
-	}
+	p->topo = tmp;
+	p->n++;    
+	
+	return true;
 }
 
-Carro pop(Pilha *p)
+int pop(Pilha *p)
 {
 	if (p->n == 0) {
-		printf("\nEstacionamento vazio!\n");
-		Carro c = {-1,-1};
-		return c;
+		return -1;
 	}
 	else {
-		Carro res = p->topo->dado;
+		int res = p->topo->dado;
 		Celula *tmp = p->topo;
 		p->topo = p->topo->prox;
 		free(tmp);
@@ -41,7 +40,7 @@ Carro pop(Pilha *p)
 
 void printPilha(Pilha *p)
 {
-	Carro *v = malloc(p->n*sizeof(Carro));
+	int *v = malloc(p->n*sizeof(int));
 	int i = p->n-1;
 
 	Celula *tmp = p->topo;
@@ -51,10 +50,9 @@ void printPilha(Pilha *p)
 		tmp = tmp->prox;
 	}
 
-	printf("\n");
-	printf("TOPO ");
-	for(int i=p->n-1; i>=0; i--)
-		printCarro(v[i]);
+	for(int i=0; i < p->n; i++)
+		printf("%d", v[i]);
+
 	printf("\n");
 }
 

@@ -1,17 +1,18 @@
 /*****************************************************************************************
- * NOME DO ARQUIVO: ex07.c 
+ * NOME DO ARQUIVO: main.c 
  * 
  * AUTOR: Gustavo Valadares Castro
  *
  * DESCRIÇÃO:	Programa de aeroporto utilizando os conceitos de fila
  *
  * OBSERVAÇÕES:
- *				Repositório: https://github.com/GuVCastro/aed2-tad-fila
+ *				Repositório: https://github.com/GuVCastro/aed2-tad-exerc
  *				Compilador: gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0 
  *
  * MUDANÇAS:
  *				DATA		AUTOR	DETALHES
  *				2021/10/29	Gustavo	Esqueleto do código
+ *				2021/11/02	Gustavo	Código Finalizado
  ****************************************************************************************/
 
 #include <stdio.h>

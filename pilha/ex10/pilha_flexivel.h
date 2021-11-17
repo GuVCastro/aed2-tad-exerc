@@ -1,11 +1,10 @@
 #include <stdbool.h>
 #include <stdio.h>
-#include "carro.h"
 
-#define MAX 5
+#define MAX 70
 
 typedef struct Celula{
-	Carro dado;
+	int dado;
 	struct Celula *prox;
 } Celula;
 
@@ -16,9 +15,9 @@ typedef struct Pilha{
 
 void newPilha(Pilha *p);
 
-void push(Pilha *p, Carro c);
+bool push(Pilha *p, int d);
 
-Carro pop(Pilha *p);
+int pop(Pilha *p);
 
 void printPilha(Pilha *p);
 
