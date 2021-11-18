@@ -24,7 +24,7 @@ void inserirOrdenado(Lista *l, Pessoa p);
 
 Pessoa verificaMaior(Lista *l);
 
-Pessoa pesquisar(Lista *l, int codigo);
+int pesquisar(Lista *l, char *nome);
 
 void ordenarCrescente(Lista *l);
 

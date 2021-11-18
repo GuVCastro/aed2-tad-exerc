@@ -1,4 +1,4 @@
-#define TAM_NOME
+#define TAM_NOME 50
 
 typedef struct Pessoa {
 	int codigo;
