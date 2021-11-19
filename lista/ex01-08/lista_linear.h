@@ -1,11 +1,10 @@
 #include "pessoa.h"
 
-#define MAX 10
+#define MAX 16
 
 typedef struct Lista {
-	Pessoa dado;
+	Pessoa dado[MAX];
 	int n;
-	int MAX;
 } Lista;
 
 void newLista(Lista *l);

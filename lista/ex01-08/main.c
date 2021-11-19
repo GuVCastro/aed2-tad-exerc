@@ -19,8 +19,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-//#include "lista_linear.h"
-#include "lista_flexivel.h"
+#include "lista_linear.h"
+//#include "lista_flexivel.h"
 
 #define BUF 7
 
